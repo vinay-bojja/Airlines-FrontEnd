@@ -1,0 +1,93 @@
+<app-home-nav></app-home-nav>
+<br>
+<h2 align="center">User Registration</h2>
+<br>
+<form style="width: 30%;margin: auto;" #frm="ngForm" (ngSubmit)="registerUser()">
+    <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputTitle">Title</label>
+            <select id="inputTitle" class="form-control" name="inputTitle" required #title="ngModel" [(ngModel)]='user.title'>
+              <option selected>Mr</option>
+              <option>Ms</option>
+              <option>Mrs</option>
+            </select>
+            <div *ngIf = "title?.touched && title?.invalid" class="text-danger">
+            <div *ngIf = "title.errors?.required">
+              Title can't be empty
+          </div>
+          </div>
+          </div>
+        <div class="form-group col-md-6">
+            <label for="inputFName4">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" required pattern="[a-zA-Z]+" #first="ngModel" [(ngModel)]='user.fName'>
+            <div *ngIf = "first?.touched && first?.invalid" class="text-danger">
+              <div *ngIf = "first.errors?.required">
+                  First Name can't be Empty
+              </div>
+              <div *ngIf = "first.errors?.pattern">
+                Only alphabets allowed
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputLNamel4">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" required pattern="[a-zA-Z]+" #last="ngModel" [(ngModel)]='user.lName'>
+            <div *ngIf = "last?.touched && last?.invalid" class="text-danger">
+              <div *ngIf = "last.errors?.required">
+                  Last Name can't be Empty
+              </div>
+              <div *ngIf = "last.errors?.pattern">
+                Only alphabets allowed
+              </div>
+            </div>
+          </div>
+      
+      <div class="form-group col-md-6">
+        <label for="inputEmail1">Email Id</label>
+        <input type="email" class="form-control" id="email" name="email" required pattern="^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #emailId="ngModel" [(ngModel)]='user.emailId'>
+        <div *ngIf = "emailId?.touched && emailId?.invalid" class="text-danger">
+          <div *ngIf = "emailId.errors?.required">
+            Email Id can't be Empty
+          </div>
+          <div *ngIf = "emailId.errors?.pattern">
+            Only Email type is allowed
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputContact">Contact</label>
+      <input type="number" class="form-control" id="contact" name="contact" #contact="ngModel" required pattern="^\d{10}$" [(ngModel)]='user.contactNo'>
+      <div *ngIf = "contact?.touched && contact?.invalid" class="text-danger">
+        <div *ngIf = "contact.errors?.required">
+            Contact information can't be Empty
+        </div>
+        <div *ngIf = "contact.errors?.pattern">
+          Enter valid Contact No.
+      </div>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="inputDOB">Date Of Birth</label>
+        <input type="date" class="form-control" id="dob" name="dob" required #dob="ngModel" max="2021-01-18" [(ngModel)]='user.dateOfBirth'>
+        <div *ngIf = "dob?.touched && dob?.invalid" class="text-danger">
+          <div *ngIf = "dob.errors?.required">
+              Date Of Birth can't be Empty
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword4">Password</label>
+        <input type="password" class="form-control" id="password" name="password" #pass="ngModel" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" [(ngModel)]='user.userPassword'>
+        <div *ngIf = "pass?.touched && pass?.invalid" class="text-danger">
+          <div *ngIf = "pass.errors?.required">
+              Password can't be empty
+          </div>
+          <div *ngIf = "pass.errors?.pattern">
+            Password contain at least one uppercase, one lowercase letter, one number digit and one special character
+        </div>
+        </div>
+      </div>
+    <button type="submit" [disabled]="frm.invalid" class="btn btn-primary">Register</button>
+  </form>
+  <router-outlet></router-outlet>

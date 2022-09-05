@@ -1,0 +1,14 @@
+<app-user-nav></app-user-nav>
+<div class="card text-center">
+    <div class="card-header">
+      Pay Securely For your Booking
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Your Total Amount for Booking is: ₹ {{cost}}</h5>
+      <p class="card-text">Thank you for your business.. Happy Journey</p>
+      <a class="btn btn-primary" routerLink="/paymentSuccess" (click)="updateBooking()">Pay Securely</a>
+    </div>
+    <div class="card-footer text-muted">
+      LTI
+    </div>
+  </div>

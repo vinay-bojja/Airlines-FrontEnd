@@ -1,0 +1,101 @@
+<app-user-nav></app-user-nav>
+<br>
+<h2 align="center">Flight Search</h2>
+<br>
+<form style="width: 30%;margin: auto;" #frm="ngForm" (ngSubmit)="searchFlights()">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputFName4">Enter Source</label>
+            <input type="text" class="form-control" id="firstName" name="source" required pattern="[a-zA-Z][a-zA-z ]+" #source="ngModel" [(ngModel)]='flightSearchDT.source'>
+            <div *ngIf = "source?.touched && source?.invalid" class="text-danger">
+              <div *ngIf = "source.errors?.required">
+                  Source can't be Empty
+              </div>
+              <div *ngIf = "source.errors?.pattern">
+                Only alphabets allowed
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputLNamel4">Enter Destination</label>
+            <input type="text" class="form-control" id="lastName" name="destination" required pattern="[a-zA-Z][a-zA-z ]+" #destination="ngModel"  [(ngModel)]='flightSearchDT.destination'>
+            <div *ngIf = "destination?.touched && destination?.invalid" class="text-danger">
+              <div *ngIf = "destination.errors?.required">
+                Destination can't be Empty
+              </div>
+              <div *ngIf = "destination.errors?.pattern">
+                Only alphabets allowed
+              </div>
+            </div>
+          </div>
+      <div class="form-group col-md-6">
+        <label for="inputState">Travel Class</label>
+        <select id="inputState" class="form-control" name="travelClass" required #travelClass="ngModel" [(ngModel)]='flightSearchDT.travelClass'>
+          <option selected>Economy</option>
+          <option>Business</option>
+        </select>
+        <div *ngIf = "travelClass?.touched && travelClass?.invalid" class="text-danger">
+          <div *ngIf = "travelClass.errors?.required">
+            Travel Class can't be empty
+        </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Travel Date</label>
+        <input type="date" class="form-control" id="password" name="travelDate" min="2021-01-18" required #date="ngModel" [(ngModel)]='flightSearchDT.travelDate'>
+        <div *ngIf = "date?.touched && date?.invalid" class="text-danger">
+          <div *ngIf = "date.errors?.required">
+            Travel Date can't be empty
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">No Of Passengers</label>
+      <input type="number" class="form-control" id="address" name="noOfPassengers" required pattern="[0-9]+" #nop="ngModel" [(ngModel)]='flightSearchDT.noOfPassengers'>
+      <div *ngIf = "nop?.touched && nop?.invalid" class="text-danger">
+        <div *ngIf = "nop.errors?.required">
+          No. of passengers can't be empty
+      </div>
+      <div *ngIf = "nop.errors?.pattern">
+        Only positive value allowed
+      </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="frm.invalid" class="btn btn-primary">Search Flights</button>
+  </form>
+  <br>
+  <br>
+  <div *ngIf="flight.length">
+  <table  style="width: 80%; margin: auto;" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Flight No.</th>
+        <th scope="col">Source</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Departure Time</th>
+        <th scope="col">Arrival Time</th>
+        <th scope="col">Journey Date</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Economy Class Cost</th>
+        <th scope="col">Business Class Cost</th>
+        <th scope="col">Book</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let f of flight">
+      <tr>
+        <th scope="row">{{f.flightId}}</th>
+        <td>{{f.source}}</td>
+        <td>{{f.destination}}</td>
+        <td>{{f.departure}}</td>
+        <td>{{f.arrival}}</td>
+        <td>{{f.journeyDate}}</td>
+        <td>{{f.duration}}</td>
+        <td>₹ {{f.economyClassCost}}</td>
+        <td>₹ {{f.businessClassCost}}</td>
+        <td><button type="button" class="btn btn-primary" (click)="flightStore(f.flightId, f.economyClassCost, f.businessClassCost)" >Book Now</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <router-outlet></router-outlet>

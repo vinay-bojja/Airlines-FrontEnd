@@ -1,0 +1,45 @@
+<app-user-nav></app-user-nav>
+<div class="container" id="print-section" style="text-align: center; border: solid 2px darkblue;">
+    <br>
+    <h2 style="text-align: center; color: green;">E-Ticket</h2>
+    <br>
+    <hr>
+    <table>
+        <tr>
+            <td style="width: 275px; font-size:x-large;"><b>{{fetchTicket.source}}-{{fetchTicket.destination}}</b></td>
+            <td style="width: 275px; font-size:x-large;"><b>{{fetchTicket.journeyDate | date : 'longDate'}}</b></td>
+            <td style="width: 275px; font-size:x-large;"><b>Travel Class : {{fetchTicket.travelClass}}</b></td>
+            <td style="width: 275px; font-size:x-large;"><b>Departure Time : {{fetchTicket.departureTime}}</b></td>
+            <td style="width: 275px; font-size:x-large;"><b>Arrival Time : {{fetchTicket.arrivalTime}}</b></td>
+        </tr>
+    </table>
+    <hr>
+    <hr>
+    <table>
+        <tr>
+            <th>Passenger Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Booking Status</th>
+            <hr>
+        </tr>
+        <br>
+        <tr *ngFor="let p of fetchTicket.passengerList" style="height: 50px;">
+            <td style="width: 200px; text-align: center; ">{{p.fName}} {{p.lName}}</td>
+            <td style="width: 200px; text-align: center;">{{p.gender}}</td>
+            <td style="width: 200px; text-align: center;">{{p.age}}</td>
+            <td style="width: 200px; text-align: center;">{{p.bookingStatus}}</td>
+           
+        </tr>
+    </table>
+    <hr>
+    <table>
+        <tr>
+            <td style="width: 275px; font-size:large;"><b>Flight Id : </b>{{fetchTicket.flightId}}</td>
+            <td style="width: 275px; font-size:large;"><b>Ticket Booking Id : </b>{{fetchTicket.bookingId}}</td>
+        </tr>
+    </table>
+    <hr>
+</div>
+<br>
+<router-outlet></router-outlet>

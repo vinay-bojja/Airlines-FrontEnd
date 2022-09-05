@@ -1,0 +1,52 @@
+<app-user-nav></app-user-nav>
+<table  style="width: 80%; margin: auto;" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Booking No.</th>
+        <th scope="col">Source</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Departure Time</th>
+        <th scope="col">Arrival Time</th>
+        <th scope="col">Journey Date</th>
+        <th scope="col">No Of Passengers</th>
+        <th scope="col">Booking Amount</th>
+        <th scope="col">Booking Date</th>
+        <th scope="col">Travel class</th>
+        <th scope="col">Generate Ticket</th>
+        <th scope="col">Cancel Booking</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let b of bookings">
+      <tr>
+        <th scope="row">{{b.bookingId}}</th>
+        <td>{{b.source}}</td>
+        <td>{{b.destination}}</td>
+        <td>{{b.departure}}</td>
+        <td>{{b.arrival}}</td>
+        <td>{{b.journeyDate}}</td>
+        <td>{{b.noOfPassengers}}</td>
+        <td>₹ {{b.cost}}</td>
+        <td>{{b.bookingDate}}</td>
+        <td>{{b.travelClass}}</td>
+        <td><button type="button" class="btn btn-primary"  (click)="goToTicket(b.bookingId)">Generate Ticket</button></td>
+        <td><button type="button" class="btn btn-danger"  (click)="cancelBooking(b.bookingId)">Cancel Booking</button></td>
+    </tr>
+        <tr>
+            <th scope="col">Passenger Id</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Age</th>
+          <th scope="col">Booking Status</th>
+        </tr>
+    <tr *ngFor="let p of b.passengerList">
+        <th scope="row">{{p.passengerId}}</th>  
+        <td>{{p.fName}}</td>
+          <td>{{p.lName}}</td>
+          <td>{{p.gender}}</td>
+          <td>{{p.age}}</td>
+          <td>{{p.bookingStatus}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <router-outlet></router-outlet>

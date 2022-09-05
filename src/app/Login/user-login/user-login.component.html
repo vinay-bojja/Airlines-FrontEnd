@@ -1,0 +1,31 @@
+<app-home-nav></app-home-nav>
+<br>
+<h2 align="center">User Login</h2>
+<br>
+ <form style="width: 30%;margin: auto;" #frm="ngForm" (ngSubmit)="loginCheck()">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" name="t1" required pattern="^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [(ngModel)]=userLogin.emailId>
+      <div *ngIf = "email?.touched && email?.invalid" class="text-danger">
+          <div *ngIf = "email.errors?.required">
+              Email Id can't be Empty
+          </div>
+          <div *ngIf = "email.errors?.pattern">
+            Only email type is allowed
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="t2" required #pass="ngModel" [(ngModel)]=userLogin.password>
+      <div *ngIf = "pass?.touched && pass?.invalid" class="text-danger">
+        <div *ngIf = "pass.errors?.required">
+            Password can't be Empty
+        </div>
+      </div>
+      <br>
+      <div>Not yet Registered?<a routerLink="/userRegistration">Register Now!</a></div>
+
+    </div>
+    <button type="submit" [disabled]="frm.invalid" class="btn btn-primary">Login</button>
+  </form>

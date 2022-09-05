@@ -1,0 +1,82 @@
+<app-user-nav></app-user-nav>
+<br>
+<h2 align="center">Passenger Information</h2>
+<br>
+
+<form style="width: 30%;margin: auto;" #mfrm="ngForm" (ngSubmit)="addBooking()">
+    <div class="form-row">
+    <div class="form-group col-md-12">
+        <label for="inputEmail1">Enter Email Id</label>
+        <input type="email" class="form-control" id="email" name="email" #email="ngModel" required pattern="^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]='bookingDT.emailId'>
+        <div *ngIf = "email?.touched && email?.invalid" class="text-danger">
+          <div *ngIf = "email.errors?.required">
+              Email Id can't be Empty
+          </div>
+          <div *ngIf = "email.errors?.pattern">
+            Only email type is allowed
+          </div>
+      </div>
+      </div>
+        <form style="width: 30%;margin: auto;" #frm="ngForm" (ngSubmit)="addPassenger()" >
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputFName4">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" #first="ngModel" required pattern="[a-zA-Z]+" [(ngModel)]='firstName'>
+            <div *ngIf = "first?.touched && first?.invalid" class="text-danger">
+              <div *ngIf = "first.errors?.required">
+                  First Name can't be Empty
+              </div>
+              <div *ngIf = "first.errors?.pattern">
+                Only alphabets allowed
+              </div>
+          </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputLNamel4">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" #last="ngModel" required pattern="[a-zA-Z]+" [(ngModel)]='lastName'>
+            <div *ngIf = "last?.touched && last?.invalid" class="text-danger">
+              <div *ngIf = "last.errors?.required">
+                Last Name can't be Empty
+              </div>
+              <div *ngIf = "last.errors?.pattern">
+                Only alphabets allowed
+              </div>
+          </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputTitle">Gender</label>
+            <select id="inputTitle" class="form-control" name="gender" #gend="ngModel" required [(ngModel)]='gender'>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+            <div *ngIf = "gend?.touched && last?.invalid" class="text-danger">
+              <div *ngIf = "gend.errors?.required">
+                Gender can't be Empty
+              </div>
+              </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputContact">Age</label>
+            <input type="number" class="form-control" id="age" name="age" #ageo="ngModel" required pattern="[0-9]+" [(ngModel)]='age'>
+            <div *ngIf = "ageo?.touched && ageo?.invalid" class="text-danger">
+              <div *ngIf = "ageo.errors?.required">
+                Age can't be Empty
+              </div>
+              <div *ngIf = "ageo.errors?.pattern">
+                Only positive allowed
+              </div>
+          </div>
+          </div>
+    </div>
+    <div class="text-danger">{{message}}</div>
+    <button type="submit" class="btn btn-primary " [disabled]="frm.invalid" [disabled]="disable" >Add Passenger</button>
+   <br> <br> <button type="reset" class="btn btn-primary"  [disabled]="disable" >Reset</button>
+    </form>
+</div>
+<br>
+<div>
+    <button align="center" type="submit" class="btn btn-primary " [disabled]="mfrm.invalid" [disabled]="!disable" >Proceed to Payment</button>
+  </div>
+  </form>
+  <router-outlet></router-outlet>
