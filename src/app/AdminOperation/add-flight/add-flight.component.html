@@ -1,0 +1,112 @@
+<app-admin-nav></app-admin-nav>
+<br>
+<h2 align="center">Add Flight Information</h2>
+<br>
+<form style="width: 30%;margin: auto;" #frm="ngForm" (ngSubmit)="addFlight()">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputFName4">Enter Source</label>
+            <input type="text" class="form-control"  name="source" #source="ngModel" required pattern="[a-zA-Z]+" [(ngModel)]='flightDT.source'>
+            <div *ngIf = "source?.touched && source?.invalid" class="text-danger">
+              <div *ngIf = "source.errors?.required">
+                  Source can't be Empty
+              </div>
+              <div *ngIf = "source.errors?.pattern">
+                Only alphabets allowed
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputLNamel4">Enter Destination</label>
+            <input type="text" class="form-control"  name="destination" #destination="ngModel" required pattern="[a-zA-Z]+"  [(ngModel)]='flightDT.destination'>
+            <div *ngIf = "destination?.touched && destination?.invalid" class="text-danger">
+              <div *ngIf = "destination.errors?.required">
+                Destination can't be Empty
+              </div>
+              <div *ngIf = "destination.errors?.pattern">
+                Only alphabets allowed
+              </div>
+            </div>
+          </div>
+      <div class="form-group col-md-12">
+        <label for="inputPassword4">Journey Date</label>
+        <input type="date" class="form-control"  name="journeyDate" min="2021-01-18" required #date="ngModel"  [(ngModel)]='flightDT.journeyDate'>
+        <div *ngIf = "date?.touched && date?.invalid" class="text-danger">
+          <div *ngIf = "date.errors?.required">
+            Journey Date can't be empty
+        </div>
+        </div>
+      </div>
+    
+    <div class="form-group col-md-6">
+        <label for="inputPassword4">Departure From Source</label>
+        <input type="time" class="form-control"  name="departureTime" required #departure="ngModel" [(ngModel)]='flightDT.departureTime'>
+        <div *ngIf = "departure?.touched && departure?.invalid" class="text-danger">
+          <div *ngIf = "departure.errors?.required">
+            Departure Time can't be empty
+        </div>
+        </div>
+      </div>
+    
+    <div class="form-group col-md-6">
+        <label for="inputPassword4">Arrival At Destination</label>
+        <input type="time" class="form-control" name="arrivalTime" required #arrival="ngModel" [(ngModel)]='flightDT.arrivalTime'>
+        <div *ngIf = "arrival?.touched && arrival?.invalid" class="text-danger">
+          <div *ngIf = "arrival.errors?.required">
+            Arrival Time can't be empty
+        </div>
+        </div>
+      </div>
+    <div class="form-group col-md-6">
+      <label for="inputAddress">Economy Class Seats</label>
+      <input type="number" class="form-control"  name="economySeats" required pattern="[0-9]+" #ecoSeats="ngModel" [(ngModel)]='flightDT.economySeats'>
+      <div *ngIf = "ecoSeats?.touched && ecoSeats?.invalid" class="text-danger">
+        <div *ngIf = "ecoSeats.errors?.required">
+          No. of Economy Seats can't be empty
+      </div>
+      <div *ngIf = "ecoSeats.errors?.pattern">
+        Only positive value allowed
+      </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6" >
+        <label for="inputAddress">Cost of Economy Class</label>
+        <input type="number" class="form-control"  name="economyClassCost" required pattern="[0-9]+" placeholder="₹" #ecoCost="ngModel" [(ngModel)]='flightDT.economyClassCost'>
+        <div *ngIf = "ecoCost?.touched && ecoCost?.invalid" class="text-danger">
+          <div *ngIf = "ecoCost.errors?.required">
+            Cost of Economy Seats can't be empty
+        </div>
+        <div *ngIf = "ecoCost.errors?.pattern">
+          Only positive value allowed
+        </div>
+        </div>
+      </div>
+       
+    <div class="form-group col-md-6">
+        <label for="inputAddress">Business Class Seats</label>
+        <input type="number" class="form-control"  name="businessSeats" required pattern="[0-9]+" #busSeats="ngModel" [(ngModel)]='flightDT.businessSeats'>
+        <div *ngIf = "busSeats?.touched && busSeats?.invalid" class="text-danger">
+          <div *ngIf = "busSeats.errors?.required">
+            No. of Business Seats can't be empty
+        </div>
+        <div *ngIf = "busSeats.errors?.pattern">
+          Only positive value allowed
+        </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="inputAddress">Cost of Business Class</label>
+          <input type="number" class="form-control"  name="businessClassCost" required pattern="[0-9]+" placeholder="₹" #busCost="ngModel" [(ngModel)]='flightDT.businessClassCost'>
+          <div *ngIf = "busCost?.touched && busCost?.invalid" class="text-danger">
+            <div *ngIf = "busCost.errors?.required">
+            Cost of Business Seats can't be empty
+          </div>
+          <div *ngIf = "busCost.errors?.pattern">
+            Only positive value allowed
+          </div>
+          </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="frm.invalid"  class="btn btn-primary">Add Flight</button>
+  </form>
+  <router-outlet></router-outlet>

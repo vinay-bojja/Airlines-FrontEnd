@@ -1,0 +1,35 @@
+<app-admin-nav></app-admin-nav>
+<br>
+<h2 align="center">Flights on Schedule</h2>
+<br>
+<table  style="width: 80%; margin: auto;" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Flight No.</th>
+        <th scope="col">Source</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Departure Time</th>
+        <th scope="col">Arrival Time</th>
+        <th scope="col">Journey Date</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Economy Class Cost</th>
+        <th scope="col">Business Class Cost</th>
+        <th scope="col">Delete Flight</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let f of flight">
+      <tr>
+        <th scope="row">{{f.flightId}}</th>
+        <td>{{f.source}}</td>
+        <td>{{f.destination}}</td>
+        <td>{{f.departure}}</td>
+        <td>{{f.arrival}}</td>
+        <td>{{f.journeyDate}}</td>
+        <td>{{f.duration}}</td>
+        <td>₹ {{f.economyClassCost}}</td>
+        <td>₹ {{f.businessClassCost}}</td>
+        <td><button type="button" class="btn btn-danger" (click)="delete(f.flightId)">Delete</button></td>
+    </tr>
+    </tbody>
+  </table>
+  <router-outlet></router-outlet>
